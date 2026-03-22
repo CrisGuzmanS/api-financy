@@ -1,0 +1,26 @@
+{
+    "MSFT": {
+        "correction": {
+            "micro": {
+                "from": 0.01,
+                "to": 0.03
+            },
+            "mini": {
+                "from": 0.03,
+                "to": 0.1
+            },
+            "normal": {
+                "from": 0.1,
+                "to": 0.2
+            },
+            "super": {
+                "from": 0.2,
+                "to": 0.3
+            },
+            "mega": {
+                "from": 0.3,
+                "to": 0.5
+            }
+        }
+    }
+}
