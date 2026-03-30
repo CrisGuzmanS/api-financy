@@ -66,4 +66,13 @@ export class Stock {
         return correction
 
     }
+
+    toJSON() {
+        return {
+            marketCapitalization: this.marketCapitalization(),
+            regularMarketPrice: this.regularMarketPrice(),
+            drawdown: this.drawdown(),
+            status: this.status()
+        }
+    }
 }

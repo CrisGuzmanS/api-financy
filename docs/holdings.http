@@ -1,0 +1,16 @@
+###
+GET http://localhost:3000/holdings
+Content-Type: application/json
+
+###
+POST http://localhost:3000/holdings
+Content-Type: application/json
+
+{
+    "ticker": "AAPL",
+    "quantity": 100,
+    "price_average": 100,
+    "price_total": 100,
+    "vix": 100,
+    "sp500": 100
+}
