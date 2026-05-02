@@ -1,3 +1,69 @@
 {
-  "holdings": []
+  "holdings": [
+    {
+      "id": 1774887957371,
+      "ticker": "SOXL",
+      "quantity": 4,
+      "cost": {
+        "average": 1094.14,
+        "total": 4376.57
+      },
+      "vix": 21.44,
+      "sp500": "$6,861.62",
+      "created_at": "2026-03-30T16:25:57.371Z",
+      "updated_at": "2026-03-30T16:25:57.371Z"
+    },
+    {
+      "id": 1774887957372,
+      "ticker": "NFLX",
+      "quantity": 5,
+      "cost": {
+        "average": 1747.50,
+        "total": 8737.50
+      },
+      "vix": null,
+      "sp500": null,
+      "created_at": "2026-03-30T16:25:57.371Z",
+      "updated_at": "2026-03-30T16:25:57.371Z"
+    },
+    {
+      "id": 1774887957373,
+      "ticker": "FMTY14.MX",
+      "quantity": 435,
+      "cost": {
+        "average": 14.24,
+        "total": 6196.59
+      },
+      "vix": null,
+      "sp500": null,
+      "created_at": "2026-03-30T16:25:57.371Z",
+      "updated_at": "2026-03-30T16:25:57.371Z"
+    },
+    {
+      "id": 1774887957374,
+      "ticker": "VGT",
+      "quantity": 3,
+      "cost": {
+        "average": 13235.73,
+        "total": 39707.20
+      },
+      "vix": null,
+      "sp500": null,
+      "created_at": "2026-03-30T16:25:57.371Z",
+      "updated_at": "2026-03-30T16:25:57.371Z"
+    },
+    {
+      "id": 1774887957374,
+      "ticker": "VOO",
+      "quantity": 1,
+      "cost": {
+        "average": 11511.50,
+        "total": 11511.50
+      },
+      "vix": null,
+      "sp500": null,
+      "created_at": "2026-03-30T16:25:57.371Z",
+      "updated_at": "2026-03-30T16:25:57.371Z"
+    }
+  ]
 }

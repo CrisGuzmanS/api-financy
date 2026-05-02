@@ -1,7 +1,7 @@
 import { Stock } from './src/Stock/Stock.js';
 import express from 'express';
 import cors from 'cors';
-import { vix } from './src/Vix/vix.js';
+import { vix } from 'vix';
 import YahooFinance from "yahoo-finance2";
 import { Format } from './src/helpers/Format.js';
 import { Holding } from './src/holdings/models/Holding.js';
@@ -25,7 +25,9 @@ app.get('/vix', async (req, res) => {
 
 app.get('/stocks/:ticker', async (req, res) => {
   const stock = await Stock.ticker(req.params.ticker);
-  res.send(stock.toJSON());
+  res.send({
+    body: stock
+  });
 })
 
 app.get('/dolar', async (req, res) => {
@@ -46,9 +48,6 @@ app.get('/holdings', async (req, res) => {
 })
 
 app.post('/holdings', async (req, res) => {
-
-  console.log(req.body)
-
   const newHolding = await Holding.create(req.body)
 
   res.json({

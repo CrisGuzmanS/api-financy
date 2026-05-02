@@ -10,8 +10,10 @@ export class Holding {
 			id: Date.now(),
 			ticker: data.ticker,
 			quantity: data.quantity,
-			price_average: data.price_average,
-			price_total: data.price_total,
+			cost: {
+				average: data.cost.average,
+				total: data.cost.total
+			},
 			vix: data.vix,
 			sp500: data.sp500,
 			created_at: new Date(),

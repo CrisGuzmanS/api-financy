@@ -26,7 +26,7 @@ export class Stock {
         return Format.millions(this.data.price.marketCap)
     }
 
-    regularMarketPrice() {
+    price() {
         return Format.money(this.data.price.regularMarketPrice);
     }
 
@@ -69,8 +69,9 @@ export class Stock {
 
     toJSON() {
         return {
+            ticker: this.data.price.symbol,
             marketCapitalization: this.marketCapitalization(),
-            regularMarketPrice: this.regularMarketPrice(),
+            price: this.price(),
             drawdown: this.drawdown(),
             status: this.status()
         }

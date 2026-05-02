@@ -13,6 +13,7 @@
     "collecty": "^5.10.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "vix": "file:packages/vix",
     "yahoo-finance2": "^3.13.2"
   },
   "keywords": [],

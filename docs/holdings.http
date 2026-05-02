@@ -7,10 +7,12 @@ POST http://localhost:3000/holdings
 Content-Type: application/json
 
 {
-    "ticker": "AAPL",
-    "quantity": 100,
-    "price_average": 100,
-    "price_total": 100,
-    "vix": 100,
-    "sp500": 100
+    "ticker": "SOXL",
+    "quantity": 4,
+    "cost": {
+        "average": 1094.14,
+        "total": 4376.57
+    },
+    "vix": null,
+    "sp500": null
 }
