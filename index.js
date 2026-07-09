@@ -5,6 +5,10 @@ import { vix } from 'vix';
 import YahooFinance from "yahoo-finance2";
 import { Format } from './src/helpers/Format.js';
 import { Holding } from './src/holdings/models/Holding.js';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express()
 
@@ -19,9 +23,33 @@ app.get('/', async (req, res) => {
   res.send(stock);
 })
 
-app.get('/vix', async (req, res) => {
-  res.send(await vix());
-})
+app.get("/vix", async (req, res) => {
+
+  try{
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const vixValue = await vix();
+
+    const info = await transporter.sendMail({
+      from: `"Mi App" <${process.env.EMAIL_USER}>`,
+      to: "cristian.guzman.contacto@gmail.com",
+      subject: "Prueba",
+      html: `<h1>${vixValue.current}</h1>`,
+    });
+
+    res.send(vixValue.current);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
 
 app.get('/stocks/:ticker', async (req, res) => {
   const stock = await Stock.ticker(req.params.ticker);

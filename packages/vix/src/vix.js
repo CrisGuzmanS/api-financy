@@ -1,4 +1,4 @@
-import YahooFinance from 'yahoo-finance2';
+import { Vix } from './Vix.js';
 
 /**
  * Get the current value of the VIX
@@ -10,9 +10,5 @@ import YahooFinance from 'yahoo-finance2';
  * @returns {Promise<number>}
  */
 export const vix = async () => {
-    const yf = new YahooFinance({
-        suppressNotices: ['yahooSurvey']
-    });
-    const vix = await yf.quote('^VIX');
-    return vix.regularMarketPrice
+    return Vix.create();
 }
