@@ -31,7 +31,7 @@ app.get("/vix", async (req, res) => {
 
     const currentVix = await vix();
 
-    if (!Market.isOpen()) {
+    if (!(await Market.isOpen())) {
       return res.status(200).send(currentVix);
     } else {
       const previousVix = await vix(-11);
