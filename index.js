@@ -7,6 +7,8 @@ import { Format } from './src/helpers/Format.js';
 import { Holding } from './src/holdings/models/Holding.js';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { Mail } from '@ellenode/maily';
+import { Market } from './packages/market/src/Market.js';
 
 dotenv.config();
 
@@ -25,26 +27,25 @@ app.get('/', async (req, res) => {
 
 app.get("/vix", async (req, res) => {
 
-  try{
+  try {
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    const currentVix = await vix();
 
-    const vixValue = await vix();
-
-    const info = await transporter.sendMail({
-      from: `"Mi App" <${process.env.EMAIL_USER}>`,
-      to: "cristian.guzman.contacto@gmail.com",
-      subject: "Prueba",
-      html: `<h1>${vixValue.current}</h1>`,
-    });
-
-    res.send(vixValue.current);
+    if (!Market.isOpen()) {
+      return res.status(200).send(currentVix);
+    } else {
+      const previousVix = await vix(-11);
+      Mail.from(process.env.MAIL_FROM)
+        .to('cristian.guzman.contacto@gmail.com')
+        .subject('Prueba')
+        .html('./templates/vix.html')
+        .data({
+          current: currentVix,
+          previous: previousVix
+        })
+        .send();
+      return res.status(200).send(currentVix);
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send(error);

@@ -9,6 +9,15 @@ import { Vix } from './Vix.js';
  * 
  * @returns {Promise<number>}
  */
-export const vix = async () => {
-    return Vix.create();
+export const vix = async (...args) => {
+
+    if(args.length === 0) {
+        return Vix.get(-1);
+    }
+
+    if(args.length === 1) {
+        return Vix.get(args[0]);
+    }
+
+    throw new Error('Invalid arguments');
 }
