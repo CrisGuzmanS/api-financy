@@ -35,6 +35,11 @@ app.get("/vix", async (req, res) => {
       return res.status(200).send(currentVix);
     } else {
       const previousVix = await vix(-11);
+
+      if (Math.floor(currentVix) === Math.floor(previousVix)) {
+        return res.status(200).send(currentVix);
+      }
+
       Mail.from(process.env.MAIL_FROM)
         .to('cristian.guzman.contacto@gmail.com')
         .subject('Prueba')
