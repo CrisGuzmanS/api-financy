@@ -5,7 +5,6 @@ import { vix } from 'vix';
 import YahooFinance from "yahoo-finance2";
 import { Format } from './src/helpers/Format.js';
 import { Holding } from './src/holdings/models/Holding.js';
-import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import { Mail } from '@ellenode/maily';
 import { Market } from './packages/market/src/Market.js';
