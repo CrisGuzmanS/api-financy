@@ -6,19 +6,19 @@ import { Market } from '../packages/market/src/Market.js';
 dotenv.config();
 
 // Market must be open
-// if (!(await Market.isOpen())) {
-//     console.info('ℹ️ Market is closed');
-//     process.exit(0);
-// }
+if (!(await Market.isOpen())) {
+    console.info('ℹ️ Market is closed');
+    process.exit(0);
+}
 
 const currentVix = await vix();
 const previousVix = await vix(-11);
 
 // Check if VIX has changed
-// if (Math.floor(currentVix) === Math.floor(previousVix)) {
-//     console.info('ℹ️ VIX has not changed');
-//     process.exit(0);
-// }
+if (Math.floor(currentVix) === Math.floor(previousVix)) {
+    console.info('ℹ️ VIX has not changed');
+    process.exit(0);
+}
 
 // Send email
 try {
