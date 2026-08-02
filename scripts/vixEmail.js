@@ -2,6 +2,7 @@ import { Mail } from '@ellenode/maily';
 import dotenv from 'dotenv';
 import { vix } from 'vix';
 import { Market } from '../packages/market/src/Market.js';
+import { Vix } from 'vix/src/Vix.js';
 
 dotenv.config();
 
@@ -14,17 +15,30 @@ if (!(await Market.isOpen())) {
 const currentVix = await vix();
 const previousVix = await vix(-11);
 
+await Vix.store(currentVix, '.current-vix');
+await Vix.store(previousVix, '.previous-vix');
+
 // Check if VIX has changed
-if (Math.floor(currentVix) === Math.floor(previousVix)) {
+if (currentVix === previousVix) {
     console.info('ℹ️ VIX has not changed');
     process.exit(0);
 }
+
+if(previousVix === await Vix.read('.previous-vix') && currentVix === await Vix.read('.current-vix')) {
+    console.info('ℹ️ VIX has not changed');
+    process.exit(0);
+}
+
+await Vix.store(currentVix, '.current-vix');
+await Vix.store(previousVix, '.previous-vix');
+
+const subject = previousVix < currentVix ? '🟢 Aumentó VIX' : '🔴 Disminuyó VIX';
 
 // Send email
 try {
     await Mail.from(process.env.MAIL_FROM)
         .to('cristian.guzman.contacto@gmail.com')
-        .subject('Prueba')
+        .subject(subject)
         .html('./templates/vix.html')
         .data({
             current: currentVix,

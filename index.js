@@ -39,15 +39,6 @@ app.get("/api/vix", async (req, res) => {
         return res.status(200).send(currentVix);
       }
 
-      Mail.from(process.env.MAIL_FROM)
-        .to('cristian.guzman.contacto@gmail.com')
-        .subject('Prueba')
-        .html('./templates/vix.html')
-        .data({
-          current: currentVix,
-          previous: previousVix
-        })
-        .send();
       return res.status(200).send(currentVix);
     }
   } catch (error) {
