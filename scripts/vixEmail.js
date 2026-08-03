@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { vix } from 'vix';
 import { Market } from '../packages/market/src/Market.js';
 import { Vix } from 'vix/src/Vix.js';
+import { Telegram } from '../src/helpers/Telegram.js';
 
 dotenv.config();
 
@@ -34,6 +35,9 @@ subject = `${subject} VIX de ${previousVix} a ${currentVix}`;
 
 // Send email
 try {
+
+    await Telegram.send(`El VIX ha cambiado de ${previousVix} a ${currentVix}`);
+
     await Mail.from(process.env.MAIL_FROM)
         .to('cristian.guzman.contacto@gmail.com')
         .subject(subject)
