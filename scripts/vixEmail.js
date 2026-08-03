@@ -15,9 +15,6 @@ if (!(await Market.isOpen())) {
 const currentVix = await vix();
 const previousVix = await vix(-11);
 
-await Vix.store(currentVix, '.current-vix');
-await Vix.store(previousVix, '.previous-vix');
-
 // Check if VIX has changed
 if (currentVix === previousVix) {
     console.info('ℹ️ VIX has not changed');
@@ -32,7 +29,8 @@ if(previousVix === await Vix.read('.previous-vix') && currentVix === await Vix.r
 await Vix.store(currentVix, '.current-vix');
 await Vix.store(previousVix, '.previous-vix');
 
-const subject = previousVix < currentVix ? '🟢 Aumentó VIX' : '🔴 Disminuyó VIX';
+let subject = previousVix < currentVix ? '🟢' : '🔴';
+subject = `${subject} VIX de ${previousVix} a ${currentVix}`;
 
 // Send email
 try {
