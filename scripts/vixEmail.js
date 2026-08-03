@@ -36,7 +36,7 @@ subject = `${subject} VIX de ${previousVix} a ${currentVix}`;
 // Send email
 try {
 
-    await Telegram.send(`El VIX ha cambiado de ${previousVix} a ${currentVix}`);
+    await Telegram.send(subject);
 
     await Mail.from(process.env.MAIL_FROM)
         .to('cristian.guzman.contacto@gmail.com')
